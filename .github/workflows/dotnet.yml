@@ -13,6 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: src/AgendaNet 
 
     steps:
     - uses: actions/checkout@v4
@@ -23,6 +27,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore AgendaNet.sln
+      run: dotnet build AgendaNet.sln --no-restore --configuration Release
     - name: Test
       run: dotnet test --no-build --verbosity normal
