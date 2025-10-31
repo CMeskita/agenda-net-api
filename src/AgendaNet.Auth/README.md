@@ -1,29 +1,55 @@
-# AgendaNet-IoC
+Ôªø# AgendaNet.Auth
 
-Resumo
-Este projeto centraliza o registro de dependÍncias da aplicaÁ„o. O arquivo principal expıe uma extens„o para IServiceCollection que registra, de forma agrupada, os serviÁos de e-mail e de autenticaÁ„o.
+Descri√ß√£o
+Biblioteca de infraestrutura para autentica√ß√£o (JWT) e envio de e‚Äëmail usada pela solu√ß√£o AgendaNet. Fornece extens√µes para registrar depend√™ncias relacionadas a Auth e Mail em projetos consumidores (.NET 8).
 
-Como funciona
-- A extens„o `AddAllDependencies(this IServiceCollection services, IConfiguration configuration)` delega para:
-  - `AddMailDependencies(configuration)` ó registra os serviÁos relacionados ao envio de e-mail.
-  - `AddAuthDependencies(configuration)` ó registra os serviÁos relacionados ‡ autenticaÁ„o/autorizaÁ„o.
-- Ambas as extensıes s„o definidas em outros projetos/assemblies:
-  - Namespace `AgendaNet_email.Dependencies`
-  - Namespace `AgendaNet.Auth.Dependencies`
-
-Uso
-- .NET 8 (modelo minimal hosting):
+Principais pacotes (conforme AgendaNet.Auth.csproj)
+- DotNetEnv (carregamento opcional de `.env`)
+- Microsoft.AspNetCore.Authentication.JwtBearer
+- Microsoft.IdentityModel.JsonWebTokens
+- System.IdentityModel.Tokens.Jwt
+- Microsoft.Extensions.DependencyInjection.Abstractions
 
 Requisitos
-- .NET 8
-- As bibliotecas que definem `AddMailDependencies` e `AddAuthDependencies` devem estar referenciadas no projeto.
+- .NET 8 (net8.0)
+- Projeto consumidor deve referenciar este projeto (ProjectReference) ou pacote nuget criado a partir dele.
 
-Boas pr·ticas
-- Mantenha a lÛgica de configuraÁ„o (como leitura de seÁıes do IConfiguration) dentro das prÛprias extensıes especÌficas (mail/auth), n„o aqui.
-- Utilize ambientes e variantes de configuraÁ„o (appsettings.Development.json, vari·veis de ambiente) para separar segredos e configuraÁıes por ambiente.
+Vari√°veis de ambiente / segredos comuns
+- JWT:
+  - Jwt:Key
+  - Jwt:Issuer
+  - Jwt:Audience
+- SMTP (exemplo):
+  - Smtp:Host
+  - Smtp:Port
+  - Smtp:User
+  - Smtp:Password
 
-Arquivo afetado
-- `AgendaNet-IoC/DependencyInjection.cs` ó contÈm a extens„o `AddAllDependencies` que re˙ne as chamadas de registro.
+Em desenvolvimento, use __Manage User Secrets__ ou vari√°veis de ambiente. Para carregar `.env` localmente (opcional), utilize DotNetEnv:
+- DotNetEnv.Env.Load() ‚Äî se adotado no c√≥digo do projeto/consumidor.
+
+Notas de integra√ß√£o
+- As extens√µes p√∫blicas esperadas:
+  - AddAuthDependencies(this IServiceCollection services, IConfiguration configuration)
+  - AddMailDependencies(this IServiceCollection services, IConfiguration configuration)
+  - (Opcional) AddAllDependencies(this IServiceCollection services, IConfiguration configuration)
+- Mantenha a l√≥gica de leitura de se√ß√µes do IConfiguration dentro das implementa√ß√µes de cada extens√£o (auth/mail).
+- N√£o exponha segredos no reposit√≥rio; use __Manage User Secrets__ ou vari√°veis de ambiente no CI/CD.
+
+Arquivos relevantes no projeto
+- AgendaNet.Auth.csproj ‚Äî defini√ß√£o de pacotes e targetFramework.
+- Controllers/AuthController.cs ‚Äî endpoints relacionados a autentica√ß√£o (consumidor deve revisar/estender conforme necessidade).
+- Controllers/SendMailController.cs ‚Äî endpoints/servi√ßos para envio de e‚Äëmail.
+
+Boas pr√°ticas
+- Valide e rode integra√ß√£o de JWT e SMTP em ambiente de desenvolvimento antes de subir para produ√ß√£o.
+- Separe configura√ß√µes sens√≠veis por ambiente (appsettings.Development.json, vari√°veis de ambiente, user secrets).
+- Documente no projeto consumidor quais chaves de configura√ß√£o s√£o obrigat√≥rias.
+
+Contribui√ß√£o
+- Abra uma branch descritiva, inclua testes quando aplic√°vel e crie PR com descri√ß√£o clara das mudan√ßas.
 
 Mantido por
 - Equipe AgendaNet
+
+Uso (exemplo minimal hosting ‚Äî Program.cs)

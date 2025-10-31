@@ -1,29 +1,55 @@
-# AgendaNet-IoC
+ï»¿# AgendaNet-email
 
-Resumo
-Este projeto centraliza o registro de dependências da aplicação. O arquivo principal expõe uma extensão para IServiceCollection que registra, de forma agrupada, os serviços de e-mail e de autenticação.
+DescriÃ§Ã£o
+Biblioteca de infraestrutura responsÃ¡vel pelo envio de eâ€‘mail e pelo registro das dependÃªncias relacionadas (extensÃµes de DI) para uso na soluÃ§Ã£o AgendaNet. Projetada para ser consumida por outros projetos (.NET 8) via __ProjectReference__.
 
-Como funciona
-- A extensão `AddAllDependencies(this IServiceCollection services, IConfiguration configuration)` delega para:
-  - `AddMailDependencies(configuration)` — registra os serviços relacionados ao envio de e-mail.
-  - `AddAuthDependencies(configuration)` — registra os serviços relacionados à autenticação/autorização.
-- Ambas as extensões são definidas em outros projetos/assemblies:
-  - Namespace `AgendaNet_email.Dependencies`
-  - Namespace `AgendaNet.Auth.Dependencies`
-
-Uso
-- .NET 8 (modelo minimal hosting):
+Principais pacotes (conforme AgendaNet-email.csproj)
+- Microsoft.Extensions.Configuration.Abstractions
+- Microsoft.Extensions.DependencyInjection.Abstractions
 
 Requisitos
-- .NET 8
-- As bibliotecas que definem `AddMailDependencies` e `AddAuthDependencies` devem estar referenciadas no projeto.
+- .NET 8 (net8.0)
+- Projeto consumidor deve referenciar este projeto (ProjectReference) ou pacote gerado a partir dele.
 
-Boas práticas
-- Mantenha a lógica de configuração (como leitura de seções do IConfiguration) dentro das próprias extensões específicas (mail/auth), não aqui.
-- Utilize ambientes e variantes de configuração (appsettings.Development.json, variáveis de ambiente) para separar segredos e configurações por ambiente.
+ConfiguraÃ§Ã£o esperada
+Recomendaâ€‘se fornecer configuraÃ§Ãµes de SMTP via __User Secrets__ (desenvolvimento) ou variÃ¡veis de ambiente em produÃ§Ã£o. Exemplo de seÃ§Ã£o em appsettings.json ou user-secrets:
 
-Arquivo afetado
-- `AgendaNet-IoC/DependencyInjection.cs` — contém a extensão `AddAllDependencies` que reúne as chamadas de registro.
+{
+  "Smtp": {
+    "Host": "smtp.exemplo.com",
+    "Port": 587,
+    "User": "usuario@exemplo.com",
+    "Password": "senha-secreta",
+    "From": "no-reply@exemplo.com",
+    "UseSsl": true
+  }
+}
+
+Chaves comuns:
+- Smtp:Host
+- Smtp:Port
+- Smtp:User
+- Smtp:Password
+- Smtp:From
+- Smtp:UseSsl
+
+Assinatura esperada
+- AddMailDependencies:
+
+Uso (exemplo minimal hosting â€” Program.cs)
+
+Boas prÃ¡ticas
+- NÃ£o versionar segredos; use __Manage User Secrets__ no Visual Studio ou variÃ¡veis de ambiente no CI/CD.
+- Coloque templates e arquivos sensÃ­veis fora do repositÃ³rio quando aplicÃ¡vel.
+- Mantenha a leitura de configuraÃ§Ã£o dentro da implementaÃ§Ã£o da extensÃ£o (ex.: AddMailDependencies).
+
+Arquivos relevantes
+- AgendaNet-email.csproj â€” definiÃ§Ã£o de pacotes e targetFramework.
+- Controllers/SendMailController.cs â€” (se existir) controller de exemplo para endpoints de envio de eâ€‘mail.
+- ExtensÃµes de DI (local onde AddMailDependencies Ã© exposto).
+
+ContribuiÃ§Ã£o
+- Crie uma branch descritiva, inclua testes quando aplicÃ¡vel e abra PR com descriÃ§Ã£o clara das mudanÃ§as.
 
 Mantido por
 - Equipe AgendaNet
