@@ -24,6 +24,9 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+    - name: List src directory  
+      run: ls -la src/AgendaNet
+        
     - name: Restore dependencies
       run: dotnet restore src/AgendaNet/AgendaNet.sln
     - name: Build
