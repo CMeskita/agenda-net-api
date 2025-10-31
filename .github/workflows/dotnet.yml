@@ -25,8 +25,8 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore AgendaNet.sln
+      run: dotnet restore src/AgendaNet/AgendaNet.sln
     - name: Build
-      run: dotnet build AgendaNet.sln --no-restore --configuration Release
+      run: dotnet build src/AgendaNet/AgendaNet.sln --no-restore --configuration Release
     - name: Test
-      run:  dotnet test AgendaNet.sln --no-build --configuration Release --verbosity normal
+      run:  dotnet test src/AgendaNet/AgendaNet.sln --no-build --configuration Release --verbosity normal
