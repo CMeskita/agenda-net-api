@@ -1,29 +1,69 @@
-# AgendaNet-IoC
+# AgendaNet
 
-Resumo
-Este projeto centraliza o registro de dependências da aplicação. O arquivo principal expõe uma extensão para IServiceCollection que registra, de forma agrupada, os serviços de e-mail e de autenticação.
+API Web em .NET 8 para gerenciamento de agenda. Projeto Web API com autenticação JWT, documentação via Swagger e suporte a execução em Docker. Referencia o projeto de IoC em `AgendaNet-IoC`.
 
-Como funciona
-- A extensão `AddAllDependencies(this IServiceCollection services, IConfiguration configuration)` delega para:
-  - `AddMailDependencies(configuration)` — registra os serviços relacionados ao envio de e-mail.
-  - `AddAuthDependencies(configuration)` — registra os serviços relacionados à autenticação/autorização.
-- Ambas as extensões são definidas em outros projetos/assemblies:
-  - Namespace `AgendaNet_email.Dependencies`
-  - Namespace `AgendaNet.Auth.Dependencies`
+## Tecnologias principais
+- .NET 8 (net8.0)
+- ASP.NET Core Web API
+- Autenticação JWT (Microsoft.AspNetCore.Authentication.JwtBearer)
+- Swagger / Swashbuckle
+- DotNetEnv (carregamento de .env)
+- Docker
 
-Uso
-- .NET 8 (modelo minimal hosting):
+## Requisitos
+- .NET 8 SDK
+- Visual Studio 2022 ou VS Code (workloads para ASP.NET)
+- Docker (opcional)
 
-Requisitos
-- .NET 8
-- As bibliotecas que definem `AddMailDependencies` e `AddAuthDependencies` devem estar referenciadas no projeto.
+## Variáveis de ambiente
+O projeto usa DotNetEnv e também suporta User Secrets em desenvolvimento.
 
-Boas práticas
-- Mantenha a lógica de configuração (como leitura de seções do IConfiguration) dentro das próprias extensões específicas (mail/auth), não aqui.
-- Utilize ambientes e variantes de configuração (appsettings.Development.json, variáveis de ambiente) para separar segredos e configurações por ambiente.
+Exemplo de arquivo `.env` (na raiz do repositório):
+    ASPNETCORE_ENVIRONMENT=Development
+    ConnectionStrings__DefaultConnection="Server=...;Database=...;User Id=...;Password=..."
+    Jwt__Key="uma-chave-muito-secreta"
+    Jwt__Issuer="AgendaNet"
+    Jwt__Audience="AgendaNetUsers"
 
-Arquivo afetado
-- `AgendaNet-IoC/DependencyInjection.cs` — contém a extensão `AddAllDependencies` que reúne as chamadas de registro.
+Usando User Secrets (Visual Studio):
+- Clique com o botão direito no projeto > __Manage User Secrets__
 
-Mantido por
-- Equipe AgendaNet
+Via CLI:
+    dotnet user-secrets init --project AgendaNet.csproj
+    dotnet user-secrets set "Jwt:Key" "uma-chave-muito-secreta" --project AgendaNet.csproj
+
+## Executando localmente
+
+Via CLI:
+    dotnet build
+    dotnet run --project AgendaNet.csproj
+
+Via Visual Studio:
+- Abra a solução.
+- Defina o projeto `AgendaNet` como projeto de inicialização.
+- Selecione a configuração __Debug__ (ou __Release__) e pressione F5 (ou __Ctrl+F5__).
+
+A documentação Swagger geralmente fica disponível em:
+- https://localhost:{port}/swagger
+
+## Executando em Docker
+Exemplo de build e run:
+    docker build -t agendanet .
+    docker run -p 5000:80 --env-file .env agendanet
+
+Ajuste portas e variáveis conforme necessário.
+
+## Autenticação (JWT)
+Configure as chaves e parâmetros (Issuer, Audience, Key) nas variáveis de ambiente ou em User Secrets. Revise a configuração de JWT no `Program.cs` para validar emissor, audiência e chave.
+
+## Observações sobre o projeto
+- O projeto referencia `AgendaNet-IoC` via ProjectReference para configuração de dependências/IoC.
+- Verifique arquivos de configuração `appsettings*.json` e o carregamento de variáveis de ambiente para ajustar logs e conexões.
+
+## Contribuição
+1. Crie uma branch descritiva.
+2. Abra PR com descrição clara das mudanças.
+3. Adicione testes e atualize documentação quando necessário.
+
+## Licença
+Adicionar licença apropriada (ex.: MIT) conforme aplicável.
