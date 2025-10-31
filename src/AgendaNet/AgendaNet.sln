@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet", "AgendaNet.csproj", "{8C12E65D-B076-4BDB-A31B-861B8D49A003}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-email", "..\AgendaNet-email\AgendaNet-email.csproj", "{075B7D5A-CF42-4042-9580-93A8EC77BCF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-IoC", "..\AgendaNet-IoC\AgendaNet-IoC.csproj", "{E21B19D7-09C3-4FB1-981A-A870763192F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet.Auth", "..\AgendaNet.Auth\AgendaNet.Auth.csproj", "{DAC14838-B971-476A-9D89-6CFD0EB56FBB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2D2DCC17-7D1D-46CC-ACF5-AEDBC2054BA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-Tests", "..\AgendaNet-Tests\AgendaNet-Tests.csproj", "{D4A3BF6B-26EE-4757-80A9-FA78EDF97C13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C12E65D-B076-4BDB-A31B-861B8D49A003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C12E65D-B076-4BDB-A31B-861B8D49A003}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C12E65D-B076-4BDB-A31B-861B8D49A003}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C12E65D-B076-4BDB-A31B-861B8D49A003}.Release|Any CPU.Build.0 = Release|Any CPU
+		{075B7D5A-CF42-4042-9580-93A8EC77BCF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{075B7D5A-CF42-4042-9580-93A8EC77BCF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{075B7D5A-CF42-4042-9580-93A8EC77BCF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{075B7D5A-CF42-4042-9580-93A8EC77BCF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E21B19D7-09C3-4FB1-981A-A870763192F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E21B19D7-09C3-4FB1-981A-A870763192F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E21B19D7-09C3-4FB1-981A-A870763192F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E21B19D7-09C3-4FB1-981A-A870763192F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAC14838-B971-476A-9D89-6CFD0EB56FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAC14838-B971-476A-9D89-6CFD0EB56FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAC14838-B971-476A-9D89-6CFD0EB56FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAC14838-B971-476A-9D89-6CFD0EB56FBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4A3BF6B-26EE-4757-80A9-FA78EDF97C13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4A3BF6B-26EE-4757-80A9-FA78EDF97C13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4A3BF6B-26EE-4757-80A9-FA78EDF97C13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4A3BF6B-26EE-4757-80A9-FA78EDF97C13}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{075B7D5A-CF42-4042-9580-93A8EC77BCF8} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{DAC14838-B971-476A-9D89-6CFD0EB56FBB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D4A3BF6B-26EE-4757-80A9-FA78EDF97C13} = {2D2DCC17-7D1D-46CC-ACF5-AEDBC2054BA4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {93D0B0CD-977F-4F1D-B21A-F922FC8A259B}
+	EndGlobalSection
+EndGlobal
