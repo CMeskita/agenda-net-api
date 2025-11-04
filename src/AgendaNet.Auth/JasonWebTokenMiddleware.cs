@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +18,6 @@ namespace AgendaNet.Auth
             }
 
             var key = Encoding.ASCII.GetBytes(authKey);
-
 
             services.AddAuthorization(options =>
             {
