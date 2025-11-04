@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AgendaNet.Auth\AgendaNet.Auth.csproj" />
+    <ProjectReference Include="..AgendaNet-emailAgendaNet-email.csproj" />
   </ItemGroup>
 
   <ItemGroup>
