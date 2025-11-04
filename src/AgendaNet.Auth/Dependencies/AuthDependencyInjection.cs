@@ -10,7 +10,7 @@ namespace AgendaNet.Auth.Dependencies
     {
         public static IServiceCollection AddAuthDependencies(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddJwtMiddleware();
+            services.AddJwtMiddleware(configuration);
 
             services.AddScoped<ITokenService, TokenService>();
 
