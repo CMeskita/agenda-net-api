@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -7,15 +8,16 @@ namespace AgendaNet.Auth
 {
     public static class JasonWebTokenMiddleware
     {
-        private static string Auth = "Amordaminhavidadaquiateaeternidade";
-        public static void AddJwtMiddleware(this IServiceCollection services)
+        //private static string Auth = "Amordaminhavidadaquiateaeternidade";
+        public static void AddJwtMiddleware(this IServiceCollection services, IConfiguration configuration)
         {
-            if (string.IsNullOrEmpty(Auth))
+            var authKey = configuration["AUTHENTICATION"];
+            if (string.IsNullOrEmpty(authKey))
             {
                 throw new InvalidOperationException("AUTHENTICATION não configurada.");
             }
             {
-                var key = Encoding.ASCII.GetBytes(Auth);
+                var key = Encoding.ASCII.GetBytes(authKey);
 
 
                 services.AddAuthorization(options =>
