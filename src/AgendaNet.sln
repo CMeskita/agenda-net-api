@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36221.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet", "AgendaNet.csproj", "{8C12E65D-B076-4BDB-A31B-861B8D49A003}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet", "AgendaNet\AgendaNet.csproj", "{8C12E65D-B076-4BDB-A31B-861B8D49A003}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-email", "..\AgendaNet-email\AgendaNet-email.csproj", "{075B7D5A-CF42-4042-9580-93A8EC77BCF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-email", "AgendaNet-email\AgendaNet-email.csproj", "{075B7D5A-CF42-4042-9580-93A8EC77BCF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-IoC", "..\AgendaNet-IoC\AgendaNet-IoC.csproj", "{E21B19D7-09C3-4FB1-981A-A870763192F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-IoC", "AgendaNet-IoC\AgendaNet-IoC.csproj", "{E21B19D7-09C3-4FB1-981A-A870763192F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet.Auth", "..\AgendaNet.Auth\AgendaNet.Auth.csproj", "{DAC14838-B971-476A-9D89-6CFD0EB56FBB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet.Auth", "AgendaNet.Auth\AgendaNet.Auth.csproj", "{DAC14838-B971-476A-9D89-6CFD0EB56FBB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2D2DCC17-7D1D-46CC-ACF5-AEDBC2054BA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-Tests", "..\AgendaNet-Tests\AgendaNet-Tests.csproj", "{D4A3BF6B-26EE-4757-80A9-FA78EDF97C13}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-Tests", "AgendaNet-Tests\AgendaNet-Tests.csproj", "{D4A3BF6B-26EE-4757-80A9-FA78EDF97C13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-Domain", "..\AgendaNet-Domain\AgendaNet-Domain.csproj", "{70371E14-3C63-4082-8B11-4D8B601BF3A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-Domain", "AgendaNet-Domain\AgendaNet-Domain.csproj", "{70371E14-3C63-4082-8B11-4D8B601BF3A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-Infra", "..\AgendaNet-Infra\AgendaNet-Infra.csproj", "{421E78EF-17B7-47CF-B608-FD000F44F216}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-Infra", "AgendaNet-Infra\AgendaNet-Infra.csproj", "{421E78EF-17B7-47CF-B608-FD000F44F216}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
