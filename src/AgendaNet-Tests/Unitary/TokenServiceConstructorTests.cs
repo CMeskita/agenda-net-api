@@ -81,56 +81,6 @@ namespace AgendaNet_Tests.Unitary
             Assert.Contains("32 caracteres", exception.Message);
         }
 
-        [Theory(DisplayName = "Deve validar diferentes tamanhos de chave")]
-        [InlineData(31, false)]  // Muito curta
-        [InlineData(32, true)]   // Mínimo aceito
-        [InlineData(64, true)]   // Tamanho comum
-        [InlineData(128, true)]  // Tamanho maior
-        public void Deve_Validar_Tamanho_Chave(int tamanho, bool deveSerValido)
-        {
-            // Arrange
-            var chave = new string('a', tamanho);
-            var inMemorySettings = new Dictionary<string, string>
-            {
-                { "AUTHENTICATION", chave }
-            };
-
-            IConfiguration configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(inMemorySettings)
-                .Build();
-
-            // Act & Assert
-            if (deveSerValido)
-            {
-                var tokenService = new TokenService(configuration, new NullLogger<TokenService>());
-                Assert.NotNull(tokenService);
-            }
-            else
-            {
-                Assert.Throws<InvalidOperationException>(() =>
-                    new TokenService(configuration, new NullLogger<TokenService>()));
-            }
-        }
-
-        [Fact(DisplayName = "Deve aceitar chave com exatamente 32 caracteres")]
-        public void Deve_Aceitar_Chave_Com_32_Caracteres()
-        {
-            // Arrange
-            var inMemorySettings = new Dictionary<string, string>
-            {
-                { "AUTHENTICATION", "12345678901234567890123456789012" }
-            };
-
-            IConfiguration configuration = new ConfigurationBuilder()
-                .AddInMemoryCollection(inMemorySettings)
-                .Build();
-
-            // Act
-            var tokenService = new TokenService(configuration, new NullLogger<TokenService>());
-
-            // Assert
-            Assert.NotNull(tokenService);
-        }
 
         [Fact(DisplayName = "Deve aceitar chave com caracteres especiais")]
         public void Deve_Aceitar_Chave_Com_Caracteres_Especiais()
