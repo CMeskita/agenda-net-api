@@ -69,5 +69,6 @@ namespace AgendaNet_Tests.Unitary
                 Assert.False(string.IsNullOrWhiteSpace(desc));
             });
         }
+
     }
 }

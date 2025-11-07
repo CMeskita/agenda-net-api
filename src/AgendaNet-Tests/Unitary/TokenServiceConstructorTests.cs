@@ -81,7 +81,6 @@ namespace AgendaNet_Tests.Unitary
             Assert.Contains("32 caracteres", exception.Message);
         }
 
-
         [Fact(DisplayName = "Deve aceitar chave com caracteres especiais")]
         public void Deve_Aceitar_Chave_Com_Caracteres_Especiais()
         {
