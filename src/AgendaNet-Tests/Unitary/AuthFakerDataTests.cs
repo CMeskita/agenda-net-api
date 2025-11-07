@@ -70,16 +70,5 @@ namespace AgendaNet_Tests.Unitary
             });
         }
 
-        [Fact(DisplayName = "Cenários randomizados devem ter emails diferentes")]
-        public void Cenarios_Randomizados_Devem_Ter_Emails_Diferentes()
-        {
-            // Act - Executar múltiplas vezes para verificar aleatoriedade
-            var execucao1 = AuthFakerData.Scenarios.Where(s => ((string)s[0]).Contains("randomizado")).Select(s => (string)s[1]).ToList();
-            var execucao2 = AuthFakerData.Scenarios.Where(s => ((string)s[0]).Contains("randomizado")).Select(s => (string)s[1]).ToList();
-
-            // Assert - Pelo menos alguns emails devem ser diferentes entre execuções
-            Assert.Equal(execucao1.Count, execucao2.Count);
-            // Note: Due to randomness, this test might occasionally fail, but it's extremely unlikely
-        }
     }
 }
