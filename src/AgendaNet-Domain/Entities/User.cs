@@ -9,7 +9,7 @@
         public string PasswordHash { get; protected set; }
         public string Roler { get; protected set; }
         public string register { get; protected set; }
-
+        public string IsActive { get; protected set; }
         public string EstablishmentId { get; set; }
         public Establishment Establishment { get; set; }
 
