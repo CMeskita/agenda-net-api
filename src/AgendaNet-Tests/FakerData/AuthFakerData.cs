@@ -8,8 +8,6 @@ namespace AgendaNet_Tests.FakerData
 {
     public class AuthFakerData
     {
-        private readonly ITokenService _tokenService;
- 
         public static IEnumerable<object[]> Scenarios
         {
             get
