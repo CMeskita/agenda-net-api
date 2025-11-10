@@ -18,8 +18,9 @@ namespace AgendaNet_Infra.Dependencies
                 opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
-           // services.AddScoped<IUnitofWork, UnityofWork>();
+            services.AddScoped<IUnitofWork, UnityofWork>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEstablishmentRepository, EstablishmentRepository>();
 
 
             return services;

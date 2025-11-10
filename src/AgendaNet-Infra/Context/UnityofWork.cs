@@ -1,4 +1,5 @@
 ﻿using AgendaNet_Domain.Interfaces;
+using AgendaNet_Infra.Repositories;
 using Microsoft.EntityFrameworkCore.Storage;
 namespace AgendaNet_Infra.Context
 {
@@ -6,12 +7,15 @@ namespace AgendaNet_Infra.Context
     {
         private readonly PostgreContext _context;
         private IDbContextTransaction _transaction;
+        private IEstablishmentRepository? _establishment;
 
-        public UnityofWork(PostgreContext context, IDbContextTransaction transaction)
+
+        public UnityofWork(PostgreContext context)
         {
             _context = context;
 
         }
+        public IEstablishmentRepository EstablishmentRepository => _establishment ??= new EstablishmentRepository(_context);
 
         public void BeginTransaction()
         {

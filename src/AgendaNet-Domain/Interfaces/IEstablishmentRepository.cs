@@ -1,4 +1,5 @@
 ﻿using AgendaNet_Domain.Entities;
+
 namespace AgendaNet_Domain.Interfaces
 {
     public interface IEstablishmentRepository

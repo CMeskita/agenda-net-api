@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet", "AgendaNet\Agen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-email", "AgendaNet-email\AgendaNet-email.csproj", "{075B7D5A-CF42-4042-9580-93A8EC77BCF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-IoC", "AgendaNet-IoC\AgendaNet-IoC.csproj", "{E21B19D7-09C3-4FB1-981A-A870763192F5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet.Auth", "AgendaNet.Auth\AgendaNet.Auth.csproj", "{DAC14838-B971-476A-9D89-6CFD0EB56FBB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
@@ -20,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-Domain", "AgendaNet-Domain\AgendaNet-Domain.csproj", "{70371E14-3C63-4082-8B11-4D8B601BF3A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-Infra", "AgendaNet-Infra\AgendaNet-Infra.csproj", "{421E78EF-17B7-47CF-B608-FD000F44F216}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendaNet-Application", "AgendaNet-Application\AgendaNet-Application.csproj", "{4FAC87C0-E8F3-4248-ADD1-BBD66D4E41B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,6 @@ Global
 		{075B7D5A-CF42-4042-9580-93A8EC77BCF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{075B7D5A-CF42-4042-9580-93A8EC77BCF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{075B7D5A-CF42-4042-9580-93A8EC77BCF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E21B19D7-09C3-4FB1-981A-A870763192F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E21B19D7-09C3-4FB1-981A-A870763192F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E21B19D7-09C3-4FB1-981A-A870763192F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E21B19D7-09C3-4FB1-981A-A870763192F5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DAC14838-B971-476A-9D89-6CFD0EB56FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DAC14838-B971-476A-9D89-6CFD0EB56FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAC14838-B971-476A-9D89-6CFD0EB56FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,6 +51,10 @@ Global
 		{421E78EF-17B7-47CF-B608-FD000F44F216}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{421E78EF-17B7-47CF-B608-FD000F44F216}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{421E78EF-17B7-47CF-B608-FD000F44F216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FAC87C0-E8F3-4248-ADD1-BBD66D4E41B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FAC87C0-E8F3-4248-ADD1-BBD66D4E41B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FAC87C0-E8F3-4248-ADD1-BBD66D4E41B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FAC87C0-E8F3-4248-ADD1-BBD66D4E41B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

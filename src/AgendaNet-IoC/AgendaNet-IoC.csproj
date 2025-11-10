@@ -22,6 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AgendaNet-Application\AgendaNet-Application.csproj" />
+    <ProjectReference Include="..\AgendaNet-Domain\AgendaNet-Domain.csproj" />
     <ProjectReference Include="..\AgendaNet-email\AgendaNet-email.csproj" />
     <ProjectReference Include="..\AgendaNet-Infra\AgendaNet-Infra.csproj" />
     <ProjectReference Include="..\AgendaNet.Auth\AgendaNet.Auth.csproj" />
