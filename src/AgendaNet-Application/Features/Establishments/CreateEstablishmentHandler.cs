@@ -7,12 +7,10 @@ namespace AgendaNet_Application.Features.Establishments
 {
     public class CreateEstablishmentHandler : IHandler<CommandEstablishment, Response>
     {
-        private readonly IEstablishmentRepository _repository;
         private readonly IUnitofWork _wow;
 
-        public CreateEstablishmentHandler(IEstablishmentRepository repository, IUnitofWork wow)
+        public CreateEstablishmentHandler(IUnitofWork wow)
         {
-            _repository = repository;
             _wow = wow;
         }
 
