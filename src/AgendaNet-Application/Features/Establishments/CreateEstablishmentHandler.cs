@@ -22,7 +22,7 @@ namespace AgendaNet_Application.Features.Establishments
             {
                 Establishment data = request;
                 _wow.BeginTransaction();
-                   await _repository.SaveAsync(data);
+                   await _wow.EstablishmentRepository.SaveAsync(data);
 
                 _wow.CommitTransaction();
                 return new Response
