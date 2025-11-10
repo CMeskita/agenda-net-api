@@ -3,8 +3,6 @@ using Microsoft.Extensions.Configuration;
 using AgendaNet_email.Dependencies;
 using AgendaNet.Auth.Dependencies;
 using AgendaNet_Infra.Dependencies;
-using AgendaNet_Application.Dependencies;
-
 
 namespace AgendaNet_IoC
 {
@@ -15,7 +13,6 @@ namespace AgendaNet_IoC
             services.AddMailDependencies(configuration);
             services.AddAuthDependencies(configuration);
             services.AddInfraDependencies(configuration);
-            services.AddApplicationMediator();
 
             return services;
         }

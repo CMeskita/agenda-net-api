@@ -8,13 +8,14 @@ namespace AgendaNet_Infra.Context
         private readonly PostgreContext _context;
         private IDbContextTransaction _transaction;
         private IEstablishmentRepository? _establishment;
-
-
+        
         public UnityofWork(PostgreContext context)
+
         {
             _context = context;
 
         }
+
         public IEstablishmentRepository EstablishmentRepository => _establishment ??= new EstablishmentRepository(_context);
 
         public void BeginTransaction()

@@ -8,7 +8,6 @@ namespace AgendaNet_Domain.Interfaces
 {
     public interface IUnitofWork: IDisposable
     {
-    
         void BeginTransaction();
         void CommitTransaction();
         Task<int> CommitAsync();

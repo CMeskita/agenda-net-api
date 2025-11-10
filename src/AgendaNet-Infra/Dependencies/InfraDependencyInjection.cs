@@ -17,11 +17,9 @@ namespace AgendaNet_Infra.Dependencies
                 opt.UseNpgsql(configuration.GetConnectionString("Postgres"));
                 opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
-
             services.AddScoped<IUnitofWork, UnityofWork>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEstablishmentRepository, EstablishmentRepository>();
-
 
             return services;
         }
