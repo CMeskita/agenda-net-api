@@ -1,5 +1,6 @@
 ﻿using AgendaNet.Auth.Domain.Interfaces;
 using AgendaNet.Auth.Domain.Models;
+using AgendaNet_Domain.Entities;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -28,7 +29,7 @@ namespace AgendaNet.Auth.Services
             _keyToken = Encoding.UTF8.GetBytes(authKey);
 
         }
-        public Tokens GerarJwtToken(UserViewModel user, int time)
+        public Tokens GerarJwtToken(User user, int time)
         {
             ArgumentNullException.ThrowIfNull(user, nameof(user));
             try
@@ -104,14 +105,14 @@ namespace AgendaNet.Auth.Services
                 throw new SecurityTokenException("Falha na validação do token.", ex);
             }
         }
-        private SecurityTokenDescriptor CriarTokenDescriptor(UserViewModel user, int tempoExpiracaoMinutos)
+        private SecurityTokenDescriptor CriarTokenDescriptor(User user, int tempoExpiracaoMinutos)
         {
             return new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
                 {
                 new Claim(JwtRegisteredClaimNames.Name, user.Email ?? string.Empty),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Stabilish_Id ?? string.Empty),
+                new Claim(JwtRegisteredClaimNames.Sub, user.EstablishmentId ?? string.Empty),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             }),
                 Expires = DateTime.UtcNow.AddMinutes(tempoExpiracaoMinutos),

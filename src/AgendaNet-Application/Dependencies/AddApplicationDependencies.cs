@@ -1,6 +1,7 @@
 ﻿using AgendaNet_Application.Commands;
 using AgendaNet_Application.Core;
 using AgendaNet_Application.Features.Establishments;
+using AgendaNet_Application.Features.Users;
 using AgendaNet_Application.Responses;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +17,14 @@ namespace AgendaNet_Application.Dependencies
 
             // Registra todos os handlers que quiser usar
             services.AddTransient<IHandler<CommandEstablishment, Response>, CreateEstablishmentHandler>();
-            services.AddTransient<IHandler<CommandGetAllEstablishment, ResponseEstablishment>, GetAllEstablishment>();
+            services.AddTransient<IHandler<CommandDuplicateEstablishment, Response>, DuplicatedEstablishmentHandler>();
+            services.AddTransient<IHandler<CommandGetAllEstablishment, List<ResponseGetallEstablishment>>, GetAllEstablishmentHandler>();
+            services.AddTransient<IHandler<CommandGetIdEstablishment, ResponseEstablishment>, GetIdEstablishmentHandler>();
+            services.AddTransient<IHandler<CommandUsers, ResponseToken>, LoginUserEstablishmentHandler>();
+            services.AddTransient<IHandler<CommandResetLogrinUsers, Response>, ResetFirstLoginUserEstablishmentHandler>();
+            services.AddTransient<IHandler<CommandGetAllTenants, ResponseGetallTenant>, GetAllEstablismentTenantHadler>();
+
+            //
             return services;
         }
     }

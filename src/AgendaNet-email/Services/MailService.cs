@@ -19,22 +19,31 @@ namespace AgendaNet_email.Services
         }
         public void SendEmail(string[] email, string subject, string body, bool isHtml = false)
         {
-            using (MailMessage mailMessage = new MailMessage())
+            try
             {
-                mailMessage.From = new MailAddress(emailFromAddres);
-                AddEmailsToMailMessage(mailMessage, email);
-                mailMessage.Subject = subject;
-                mailMessage.Body = body;
-                mailMessage.IsBodyHtml = isHtml;
-                using (SmtpClient smtp = new SmtpClient(smtpServer, smtpPort))
-                {
-                    smtp.EnableSsl = true;
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Credentials = new System.Net.NetworkCredential(emailFromAddres, password);
-                    smtp.EnableSsl = true;
-                    smtp.Send(mailMessage);
-                }
 
+                using (MailMessage mailMessage = new MailMessage())
+                {
+                    mailMessage.From = new MailAddress(emailFromAddres);
+                    AddEmailsToMailMessage(mailMessage, email);
+                    mailMessage.Subject = subject;
+                    mailMessage.Body = body;
+                    mailMessage.IsBodyHtml = isHtml;
+                    using (SmtpClient smtp = new SmtpClient(smtpServer, smtpPort))
+                    {
+                        smtp.EnableSsl = true;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new System.Net.NetworkCredential(emailFromAddres, password);
+                        smtp.EnableSsl = true;
+                        smtp.Send(mailMessage);
+                    }
+
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
         }

@@ -1,5 +1,7 @@
 ﻿using AgendaNet_Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
+using System.Security.Principal;
 
 namespace AgendaNet_Infra.Context
 {
@@ -11,6 +13,7 @@ namespace AgendaNet_Infra.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Establishment> Establishments { get; set; }
+        public DbSet<EstablishmentTenant> EstablishmentTenants { get; set; }
         public DbSet<Document> Documents { get; set; }
 
         #endregion
@@ -18,7 +21,16 @@ namespace AgendaNet_Infra.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //Configurações adicionais de mapeamento podem ser feitas aqui
+
+            modelBuilder.Entity<Establishment>().HasKey(x => x.Id);
+            modelBuilder.Entity<User>().HasKey(x => x.Id);
+            modelBuilder.Entity<Contact>().HasKey(x => x.Id);
+            modelBuilder.Entity<Document>().HasKey(x => x.Id);
+            modelBuilder.Entity<EstablishmentTenant>().HasKey(x => x.EstablishmentId);
+
+            modelBuilder.Entity<EstablishmentTenant>()
+                .Property(b => b.AtributosEstablisment)
+                .HasColumnType("jsonb");
         }
     }
 }

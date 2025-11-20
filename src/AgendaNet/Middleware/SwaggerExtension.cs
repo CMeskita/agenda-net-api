@@ -1,4 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 namespace AgendaNet.Models
 {
@@ -48,6 +49,10 @@ namespace AgendaNet.Models
                         Array.Empty<string>()
                     }
                 });
+                // Usar Reflection para obter o nome do arquivo XML gerado
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
 
         }

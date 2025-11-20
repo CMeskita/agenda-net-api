@@ -3,6 +3,10 @@
     //Estabelecimentos
     public class Establishment
     {
+        public Establishment()
+        {
+            
+        }
         public Establishment(string name, string description, string address, string phoneNumber, string email, string themeColor, string logoUrl)
         {
             Id = Guid.NewGuid().ToString().ToUpper();
@@ -14,6 +18,14 @@
             ThemeColor = themeColor;
             LogoUrl = logoUrl;
             IsActive=true;
+        }
+        public void SetGuidId()
+        {
+            Id = Guid.NewGuid().ToString().ToUpper(); ;
+        }
+        public void Deactivate()
+        {
+            IsActive = false;
         }
 
         public string Id { get;protected set; }
@@ -27,6 +39,7 @@
         public bool IsActive { get; protected set; }
 
         public ICollection<User> Users { get; set; }
+        public ICollection<Document> Documents { get; set; }
 
 
     }
