@@ -1,4 +1,5 @@
 ﻿using AgendaNet.Auth.Domain.Models;
+using AgendaNet_Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace AgendaNet.Auth.Domain.Interfaces
 {
     public interface ITokenService
     {
-        Tokens GerarJwtToken(UserViewModel user, int tempoExpiracaoMinutos);
+        Tokens GerarJwtToken(User user, int tempoExpiracaoMinutos);
         string ObterEmailToken(string token);
         ClaimsPrincipal ValidarToken(string token, bool ignorarExpiracao = false);
     }

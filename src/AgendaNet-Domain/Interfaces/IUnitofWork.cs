@@ -9,6 +9,7 @@ namespace AgendaNet_Domain.Interfaces
     public interface IUnitofWork: IDisposable
     {
         IEstablishmentRepository EstablishmentRepository { get; }
+        IUserRepository UserRepository { get; }
         void BeginTransaction();
         void CommitTransaction();
         Task<int> CommitAsync();

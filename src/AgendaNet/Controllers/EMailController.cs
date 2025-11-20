@@ -10,16 +10,20 @@ namespace AgendaNet.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class SendMailController : ControllerBase
+    public class EMailController : ControllerBase
     {
         private readonly IMailService _mailService;
 
-        public SendMailController(MailService mailService)
+        public EMailController(MailService mailService)
         {
             _mailService = mailService;
 
         }
-
+        /// <summary>
+        /// Envia email para um ou mais de um destinatários.
+        /// </summary>
+        /// <returns> retornana</returns>
+        /// <response code="200">Retorna  com sucesso.</response>
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] MailViewModel mailViewModel)

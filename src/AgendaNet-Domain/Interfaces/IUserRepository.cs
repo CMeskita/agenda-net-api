@@ -3,13 +3,17 @@ namespace AgendaNet_Domain.Interfaces
 {
     public interface IUserRepository
     {
-        Task SaveAsync(User data);
+        Task<User> SaveAsync(User data);
         Task UpdateAsync(User data);
+        Task<User> UpdateFirstAcessedAsync(User data);
         Task<bool> DeleteAsync(string id);
         Task<(List<User> items, int totalitems)> GetAllAsync(int pageindex, int pagesize);
+        Task<User> GetUserByEmail(string email);
+        Task<bool> ExistUserCount();
+        Task<bool> EmailUserIsAcessed(string email, string establismentid);
 
         #region Conctatt User
-        Task SaveContactAsync(Contact data);
+        Task<Contact> SaveContactAsync(Contact data);
         Task UpdateContactAsync(Contact data);
         Task<bool> DeleteConctactAsync(string id);
         Task<(List<Contact> items, int totalitems)> GetAllContactAsync(int pageindex, int pagesize);
