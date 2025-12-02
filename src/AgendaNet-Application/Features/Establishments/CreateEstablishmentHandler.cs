@@ -6,21 +6,34 @@ using AgendaNet_Domain.Interfaces;
 using AgendaNet_Domain.Utilities;
 using AgendaNet_email.Domain.Interfaces;
 using AgendaNet_email.Services;
-using System.Text.Json;
+using FluentValidation;
 namespace AgendaNet_Application.Features.Establishments
 {
     public class CreateEstablishmentHandler : IHandler<CommandEstablishment, Response>
     {
         private readonly IUnitofWork _wow;
         private readonly IMailService _mailService;
-        public CreateEstablishmentHandler(IUnitofWork wow, IMailService mailService)
+        private readonly IValidator<CommandEstablishment> _validator;
+        public CreateEstablishmentHandler(IUnitofWork wow, IMailService mailService, IValidator<CommandEstablishment> validator)
         {
             _wow = wow;
             _mailService = mailService;
+            _validator = validator;
         }
 
         public async Task<Response> ExecuteAsync(CommandEstablishment request)
         {
+            var validationResult = await _validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+            {
+                return new Response
+                {
+                    StatusCode = 400,
+                    Message = "Erro de validação",
+                    Detalhe = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage))
+                };
+            }
             try
             {
                 Establishment data = request;
