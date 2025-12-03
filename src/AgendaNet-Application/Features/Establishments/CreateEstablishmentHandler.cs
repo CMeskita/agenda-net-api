@@ -68,6 +68,8 @@ namespace AgendaNet_Application.Features.Establishments
                 //var emailExists = await _wow.UserRepository.ExistUserCount();
                 var password = ExtensionsAuxiliary.GenerateRandomCode(6);
 
+                var passwordHash = password.HashPassword();
+
                 var user = new User(establishment.Name, establishment.Email, password.ToString().ToUpper(), establishment.Id);
 
 

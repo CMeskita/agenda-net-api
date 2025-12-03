@@ -4,6 +4,7 @@ using AgendaNet_Application.Core;
 using AgendaNet_Application.Responses;
 using AgendaNet_Domain.Entities;
 using AgendaNet_Domain.Interfaces;
+using AgendaNet_Domain.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

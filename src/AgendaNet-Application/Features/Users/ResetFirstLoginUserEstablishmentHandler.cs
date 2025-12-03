@@ -3,6 +3,7 @@ using AgendaNet_Application.Core;
 using AgendaNet_Application.Responses;
 using AgendaNet_Domain.Entities;
 using AgendaNet_Domain.Interfaces;
+using AgendaNet_Domain.Utilities;
 
 
 namespace AgendaNet_Application.Features.Users
@@ -43,7 +44,7 @@ namespace AgendaNet_Application.Features.Users
 
                 }
 
-                User data = new User(user.Id,user.Name,request.Email, request.NewPassword,user.Roler, user.EstablishmentId);
+                User data = new User(user.Id,user.Name,request.Email, request.NewPassword.HashPassword(),user.Roler, user.EstablishmentId);
 
                 
                 var IsAcessed = await _wow.UserRepository.EmailUserIsAcessed(request.Email,data.EstablishmentId);
