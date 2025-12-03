@@ -13,8 +13,8 @@ namespace AgendaNet_Application.Features.Establishments
     {
         private readonly IUnitofWork _wow;
         private readonly IMailService _mailService;
-        private readonly IValidator<CommandEstablishment> _validator;
-        public CreateEstablishmentHandler(IUnitofWork wow, IMailService mailService, IValidator<CommandEstablishment> validator)
+        private readonly IValidator<Establishment> _validator;
+        public CreateEstablishmentHandler(IUnitofWork wow, IMailService mailService, IValidator<Establishment> validator)
         {
             _wow = wow;
             _mailService = mailService;
@@ -23,7 +23,9 @@ namespace AgendaNet_Application.Features.Establishments
 
         public async Task<Response> ExecuteAsync(CommandEstablishment request)
         {
-            var validationResult = await _validator.ValidateAsync(request);
+            Establishment data = request;
+
+            var validationResult = await _validator.ValidateAsync(data);
 
             if (!validationResult.IsValid)
             {
@@ -36,7 +38,6 @@ namespace AgendaNet_Application.Features.Establishments
             }
             try
             {
-                Establishment data = request;
 
                 _wow.BeginTransaction();
 
@@ -70,7 +71,7 @@ namespace AgendaNet_Application.Features.Establishments
                 var user = new User(establishment.Name, establishment.Email, password.ToString().ToUpper(), establishment.Id);
 
 
-                //_mailService.SendEmail(new[] { user.Email }, "Primeira Senha do Usuário", $"Olá {user.Name}, sua senha é: {user.PasswordHash}", false);
+                _mailService.SendEmail(new[] { user.Email }, "Primeira Senha do Usuário", $"Olá {user.Name}, sua senha é: {user.PasswordHash}", false);
 
 
                 user.setAcessed(true);
