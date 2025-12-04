@@ -1,8 +1,11 @@
 ﻿using AgendaNet_Application.Commands;
+using AgendaNet_Application.Commands.Validations;
 using AgendaNet_Application.Core;
 using AgendaNet_Application.Features.Establishments;
 using AgendaNet_Application.Features.Users;
 using AgendaNet_Application.Responses;
+using AgendaNet_Domain.Entities;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -23,7 +26,7 @@ namespace AgendaNet_Application.Dependencies
             services.AddTransient<IHandler<CommandUsers, ResponseToken>, LoginUserEstablishmentHandler>();
             services.AddTransient<IHandler<CommandResetLogrinUsers, Response>, ResetFirstLoginUserEstablishmentHandler>();
             services.AddTransient<IHandler<CommandGetAllTenants, ResponseGetallTenant>, GetAllEstablismentTenantHadler>();
-
+            services.AddScoped<IValidator<Establishment>, EstablishmentValidator>();
             //
             return services;
         }

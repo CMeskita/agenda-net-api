@@ -6,24 +6,38 @@ using AgendaNet_Domain.Interfaces;
 using AgendaNet_Domain.Utilities;
 using AgendaNet_email.Domain.Interfaces;
 using AgendaNet_email.Services;
-using System.Text.Json;
+using FluentValidation;
 namespace AgendaNet_Application.Features.Establishments
 {
     public class CreateEstablishmentHandler : IHandler<CommandEstablishment, Response>
     {
         private readonly IUnitofWork _wow;
         private readonly IMailService _mailService;
-        public CreateEstablishmentHandler(IUnitofWork wow, IMailService mailService)
+        private readonly IValidator<Establishment> _validator;
+        public CreateEstablishmentHandler(IUnitofWork wow, IMailService mailService, IValidator<Establishment> validator)
         {
             _wow = wow;
             _mailService = mailService;
+            _validator = validator;
         }
 
         public async Task<Response> ExecuteAsync(CommandEstablishment request)
         {
+            Establishment data = request;
+
+            var validationResult = await _validator.ValidateAsync(data);
+
+            if (!validationResult.IsValid)
+            {
+                return new Response
+                {
+                    StatusCode = 400,
+                    Message = "Erro de validação",
+                    Detalhe = string.Join(" | ", validationResult.Errors.Select(e => e.ErrorMessage))
+                };
+            }
             try
             {
-                Establishment data = request;
 
                 _wow.BeginTransaction();
 
@@ -54,10 +68,12 @@ namespace AgendaNet_Application.Features.Establishments
                 //var emailExists = await _wow.UserRepository.ExistUserCount();
                 var password = ExtensionsAuxiliary.GenerateRandomCode(6);
 
+                var passwordHash = password.HashPassword();
+
                 var user = new User(establishment.Name, establishment.Email, password.ToString().ToUpper(), establishment.Id);
 
 
-                //_mailService.SendEmail(new[] { user.Email }, "Primeira Senha do Usuário", $"Olá {user.Name}, sua senha é: {user.PasswordHash}", false);
+                _mailService.SendEmail(new[] { user.Email }, "Primeira Senha do Usuário", $"Olá {user.Name}, sua senha é: {user.PasswordHash}", false);
 
 
                 user.setAcessed(true);

@@ -1,11 +1,12 @@
-﻿namespace AgendaNet_Domain.Entities
+﻿
+namespace AgendaNet_Domain.Entities
 {
     //Estabelecimentos
     public class Establishment
     {
         public Establishment()
         {
-            
+
         }
         public Establishment(string name, string description, string address, string phoneNumber, string email, string themeColor, string logoUrl)
         {
@@ -17,7 +18,8 @@
             Email = email;
             ThemeColor = themeColor;
             LogoUrl = logoUrl;
-            IsActive=true;
+            IsActive = true;
+
         }
         public void SetGuidId()
         {
@@ -28,7 +30,7 @@
             IsActive = false;
         }
 
-        public string Id { get;protected set; }
+        public string Id { get; protected set; }
         public string Name { get; protected set; }
         public string Description { get; protected set; }
         public string Address { get; protected set; }
@@ -40,7 +42,5 @@
 
         public ICollection<User> Users { get; set; }
         public ICollection<Document> Documents { get; set; }
-
-
     }
 }
